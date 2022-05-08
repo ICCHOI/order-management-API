@@ -14,7 +14,8 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static com.example.ordermanagement.JdbcUtils.toUUID;
+import static com.example.ordermanagement.util.JdbcUtils.toLocalDateTime;
+import static com.example.ordermanagement.util.JdbcUtils.toUUID;
 
 @Repository
 public class OrderJdbcRepository implements OrderRepository {
@@ -88,8 +89,8 @@ public class OrderJdbcRepository implements OrderRepository {
         var postcode = resultSet.getString("postcode");
         var orderItems = findOrderItem(orderId);
         var orderStatus = OrderStatus.valueOf(resultSet.getString("order_status"));
-        var orderAt = resultSet.getTimestamp("order_at").toLocalDateTime();
-        var updatedAt = resultSet.getTimestamp("updated_at").toLocalDateTime();
+        var orderAt = toLocalDateTime(resultSet.getTimestamp("order_at"));
+        var updatedAt = toLocalDateTime(resultSet.getTimestamp("updated_at"));
 
         return new Order(orderId, email, address, postcode, orderItems, orderStatus, orderAt, updatedAt);
     };

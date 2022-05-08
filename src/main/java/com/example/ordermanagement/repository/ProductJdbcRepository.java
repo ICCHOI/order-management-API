@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-import static com.example.ordermanagement.JdbcUtils.toLocalDateTime;
-import static com.example.ordermanagement.JdbcUtils.toUUID;
+import static com.example.ordermanagement.util.JdbcUtils.toLocalDateTime;
+import static com.example.ordermanagement.util.JdbcUtils.toUUID;
 
 @Repository
 public class ProductJdbcRepository implements ProductRepository {
